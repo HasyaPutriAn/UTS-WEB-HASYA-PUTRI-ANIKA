@@ -70,3 +70,101 @@ grupFilter.addEventListener("click", function (e) {
 });
 
 kolomCari.addEventListener("input", tampilkanProyek);
+
+/* ---------- Kalkulator estimasi biaya ---------- */
+const formEstimasi = document.getElementById("formEstimasi");
+const inputHalaman = document.getElementById("jumlahHalaman");
+const hasilTotal = document.getElementById("hasilTotal");
+const hasilRincian = document.getElementById("hasilRincian");
+const BIAYA_PER_HALAMAN = 150000;
+
+function formatRupiah(angka) {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    maximumFractionDigits: 0
+  }).format(angka);
+}
+
+function tambahBaris(teks) {
+  const li = document.createElement("li");
+  li.textContent = teks;
+  hasilRincian.appendChild(li);
+}
+
+function hitungEstimasi(event) {
+  event.preventDefault();
+
+  const halaman = parseInt(inputHalaman.value, 10);
+  if (isNaN(halaman) || halaman < 1 || halaman > 50) {
+    inputHalaman.classList.add("is-invalid");
+    hasilTotal.textContent = formatRupiah(0);
+    hasilRincian.innerHTML = "";
+    tambahBaris("Perbaiki jumlah halaman dulu.");
+    return;
+  }
+  inputHalaman.classList.remove("is-invalid");
+
+  const pilihJenis = document.getElementById("jenisProyek");
+  const biayaDasar = Number(pilihJenis.value);
+  const namaJenis = pilihJenis.options[pilihJenis.selectedIndex].text;
+  const biayaHalaman = halaman * BIAYA_PER_HALAMAN;
+
+  let biayaFitur = 0;
+  const namaFitur = [];
+  document.querySelectorAll(".fitur:checked").forEach(function (cek) {
+    biayaFitur += Number(cek.value);
+    namaFitur.push(cek.nextElementSibling.textContent.split(" (")[0]);
+  });
+
+  const total = biayaDasar + biayaHalaman + biayaFitur;
+
+  hasilTotal.textContent = formatRupiah(total);
+  hasilRincian.innerHTML = "";
+  tambahBaris(namaJenis + ": " + formatRupiah(biayaDasar));
+  tambahBaris(halaman + " halaman: " + formatRupiah(biayaHalaman));
+  tambahBaris(
+    namaFitur.length > 0
+      ? "Fitur (" + namaFitur.join(", ") + "): " + formatRupiah(biayaFitur)
+      : "Tanpa fitur tambahan"
+  );
+}
+
+formEstimasi.addEventListener("submit", hitungEstimasi);
+
+/* ---------- Validasi form kontak ---------- */
+const formKontak = document.getElementById("formKontak");
+const notifKontak = document.getElementById("notifKontak");
+
+function tandai(input, valid) {
+  input.classList.toggle("is-invalid", !valid);
+  input.classList.toggle("is-valid", valid);
+  return valid;
+}
+
+function validasiKontak(event) {
+  event.preventDefault();
+
+  const nama = document.getElementById("nama");
+  const email = document.getElementById("email");
+  const pesan = document.getElementById("pesan");
+  const polaEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const okNama = tandai(nama, nama.value.trim().length >= 3);
+  const okEmail = tandai(email, polaEmail.test(email.value.trim()));
+  const okPesan = tandai(pesan, pesan.value.trim().length >= 10);
+
+  if (okNama && okEmail && okPesan) {
+    notifKontak.className = "mt-3 alert alert-success";
+    notifKontak.textContent = "Terima kasih, " + nama.value.trim() + ". Pesanmu sudah lolos validasi.";
+    formKontak.reset();
+    [nama, email, pesan].forEach(function (el) {
+      el.classList.remove("is-valid");
+    });
+  } else {
+    notifKontak.className = "mt-3 alert alert-danger";
+    notifKontak.textContent = "Masih ada isian yang belum benar. Cek kolom yang bertanda merah.";
+  }
+}
+
+formKontak.addEventListener("submit", validasiKontak);
