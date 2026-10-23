@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portofolio interaktif Hasya Putri Anika, mahasiswa Sistem Informasi Universitas Nusantara PGRI Kediri.">
+  <meta name="author" content="Hasya Putri Anika">
+  <title>Hasya Putri Anika | Portofolio Sistem Informasi</title>
+  <link rel="icon" href="img/avatar.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header sticky-top">
+    <nav class="navbar navbar-expand-lg" aria-label="Navigasi utama">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#beranda">Asta</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuUtama" aria-controls="menuUtama" aria-expanded="false" aria-label="Buka menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menuUtama">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <li class="nav-item"><a class="nav-link" href="#tentang">Tentang</a></li>
+            <li class="nav-item"><a class="nav-link" href="#proyek">Proyek</a></li>
+            <li class="nav-item"><a class="nav-link" href="#estimasi">Estimasi Biaya</a></li>
+            <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
+            <li class="nav-item">
+              <button id="tombolTema" class="btn btn-outline-secondary btn-sm" type="button" aria-pressed="false">Mode gelap</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="beranda" class="hero py-5">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-md-7">
+            <p class="text-body-secondary mb-2">Sistem Informasi, UN PGRI Kediri</p>
+            <h1 class="display-4 mb-3">Hasya Putri Anika, mahasiswa yang suka merapikan alur sistem.</h1>
+            <p class="lead mb-4">Saya belajar membuat web, jaringan, dan memetakan proses bisnis. Halaman ini berisi profil singkat, proyek kuliah, dan alat hitung estimasi biaya.</p>
+            <a href="#proyek" class="btn btn-accent btn-lg me-2">Lihat proyek</a>
+            <a href="#kontak" class="btn btn-outline-secondary btn-lg">Hubungi saya</a>
+          </div>
+          <div class="col-md-5 text-center">
+            <img src="img/avatar.svg" class="img-fluid hero-img" alt="Ilustrasi inisial HA" width="320" height="320">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tentang" class="py-5 section-alt">
+      <div class="container">
+        <div class="row g-4">
+          <article class="col-lg-8">
+            <h2 class="mb-3">Tentang saya</h2>
+            <p>Saya mahasiswa semester awal Program Studi Sistem Informasi, Fakultas Teknik dan Ilmu Komputer, Universitas Nusantara PGRI Kediri. Di kelas saya mulai dari dasar HTML, CSS, dan JavaScript, lalu ikut mengerjakan analisis proses bisnis dan konfigurasi jaringan.</p>
+            <p>Buat saya, sistem informasi yang bagus itu bukan yang paling rumit, tapi yang alurnya jelas dan bisa dipakai orang biasa. Karena itu saya senang menggambar alur dulu sebelum menulis kode.</p>
+          </article>
+          <aside class="col-lg-4" aria-label="Keahlian">
+            <h2 class="h5 mb-3">Yang sedang saya pelajari</h2>
+            <ul class="list-unstyled skill-list">
+              <li>HTML5 semantik</li>
+              <li>Bootstrap dan CSS</li>
+              <li>JavaScript dasar</li>
+              <li>Pemodelan proses bisnis (BPMN)</li>
+              <li>Jaringan komputer (Mikrotik)</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="proyek" class="py-5">
+      <div class="container">
+        <h2 class="mb-2">Proyek</h2>
+        <p class="text-body-secondary mb-4">Cari berdasarkan judul atau pilih kategori.</p>
+
+        <div class="row g-3 mb-4">
+          <div class="col-md-6">
+            <label for="cariProyek" class="form-label">Cari proyek</label>
+            <input type="search" id="cariProyek" class="form-control" placeholder="Contoh: mikrotik">
+          </div>
+          <div class="col-md-6">
+            <span class="form-label d-block">Kategori</span>
+            <div class="btn-group flex-wrap" role="group" aria-label="Filter kategori" id="filterKategori">
+              <button type="button" class="btn btn-outline-secondary active" data-kategori="semua">Semua</button>
+              <button type="button" class="btn btn-outline-secondary" data-kategori="bisnis">Bisnis</button>
+              <button type="button" class="btn btn-outline-secondary" data-kategori="jaringan">Jaringan</button>
+              <button type="button" class="btn btn-outline-secondary" data-kategori="web">Web</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4" id="daftarProyek">
+          <article class="col-md-6 col-lg-3 proyek-item" data-kategori="bisnis" data-judul="analisis proses bisnis alam kitchen">
+            <div class="card h-100">
+              <img src="img/proyek-alam-kitchen.svg" class="card-img-top" alt="Diagram alur proses pemesanan" loading="lazy">
+              <div class="card-body">
+                <h3 class="h5 card-title">Analisis Proses Bisnis Alam Kitchen</h3>
+                <p class="card-text">Pemodelan As-Is dan BPMN untuk alur pemesanan sampai pembayaran.</p>
+              </div>
+            </div>
+          </article>
+          <article class="col-md-6 col-lg-3 proyek-item" data-kategori="jaringan" data-judul="instalasi mikrotik chr virtualbox">
+            <div class="card h-100">
+              <img src="img/proyek-mikrotik.svg" class="card-img-top" alt="Ilustrasi topologi jaringan sederhana" loading="lazy">
+              <div class="card-body">
+                <h3 class="h5 card-title">Instalasi Mikrotik CHR</h3>
+                <p class="card-text">Menjalankan Mikrotik CHR di VirtualBox dan mendokumentasikannya dalam laporan.</p>
+              </div>
+            </div>
+          </article>
+          <article class="col-md-6 col-lg-3 proyek-item" data-kategori="web" data-judul="capstone project sistem informasi">
+            <div class="card h-100">
+              <img src="img/proyek-capstone.svg" class="card-img-top" alt="Ilustrasi jendela aplikasi web" loading="lazy">
+              <div class="card-body">
+                <h3 class="h5 card-title">Capstone Project</h3>
+                <p class="card-text">Proyek kelompok pengembangan sistem informasi, dikerjakan bertahap sepanjang semester.</p>
+              </div>
+            </div>
+          </article>
+          <article class="col-md-6 col-lg-3 proyek-item" data-kategori="bisnis" data-judul="rencana usaha rujak buah siwil goreng">
+            <div class="card h-100">
+              <img src="img/proyek-rujak.svg" class="card-img-top" alt="Ilustrasi booth container usaha kecil" loading="lazy">
+              <div class="card-body">
+                <h3 class="h5 card-title">Rencana Usaha Rujak dan Siwil</h3>
+                <p class="card-text">Rancangan usaha rujak buah dan snack siwil goreng dengan konsep booth container.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+        <p id="pesanKosong" class="text-body-secondary mt-4 d-none" role="status">Tidak ada proyek yang cocok. Coba kata kunci lain atau pilih kategori Semua.</p>
+      </div>
+    </section>
+
+    <section id="estimasi" class="py-5 section-alt">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <h2 class="mb-2">Estimasi biaya proyek web</h2>
+            <p class="text-body-secondary">Tarif di sini hanya contoh untuk latihan. Isi data, lalu hasilnya muncul di samping.</p>
+            <form id="formEstimasi" novalidate>
+              <div class="mb-3">
+                <label for="jenisProyek" class="form-label">Jenis proyek</label>
+                <select id="jenisProyek" class="form-select">
+                  <option value="500000">Landing page</option>
+                  <option value="900000">Website profil</option>
+                  <option value="1800000">Toko online sederhana</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="jumlahHalaman" class="form-label">Jumlah halaman</label>
+                <input type="number" id="jumlahHalaman" class="form-control" min="1" max="50" value="3">
+                <div id="errHalaman" class="invalid-feedback">Isi jumlah halaman antara 1 sampai 50.</div>
+              </div>
+              <fieldset class="mb-3">
+                <legend class="form-label fs-6">Fitur tambahan</legend>
+                <div class="form-check">
+                  <input class="form-check-input fitur" type="checkbox" value="250000" id="fiturForm">
+                  <label class="form-check-label" for="fiturForm">Formulir kontak (Rp250.000)</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input fitur" type="checkbox" value="300000" id="fiturGaleri">
+                  <label class="form-check-label" for="fiturGaleri">Galeri foto (Rp300.000)</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input fitur" type="checkbox" value="200000" id="fiturSeo">
+                  <label class="form-check-label" for="fiturSeo">Pengaturan SEO dasar (Rp200.000)</label>
+                </div>
+              </fieldset>
+              <button type="submit" class="btn btn-accent">Hitung estimasi</button>
+            </form>
+          </div>
+          <div class="col-lg-6">
+            <div class="hasil-box p-4" aria-live="polite">
+              <h3 class="h5">Hasil estimasi</h3>
+              <p id="hasilTotal" class="hasil-angka">Rp0</p>
+              <ul id="hasilRincian" class="list-unstyled mb-0 text-body-secondary">
+                <li>Belum ada perhitungan.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontak" class="py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-7">
+            <h2 class="mb-2">Kontak</h2>
+            <p class="text-body-secondary">Kirim pesan lewat formulir ini. Datanya hanya dicek di browser, belum dikirim ke server.</p>
+            <form id="formKontak" novalidate>
+              <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" id="nama" class="form-control" autocomplete="name">
+                <div class="invalid-feedback">Nama minimal 3 karakter.</div>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" class="form-control" autocomplete="email">
+                <div class="invalid-feedback">Format email belum benar, contoh: nama@email.com.</div>
+              </div>
+              <div class="mb-3">
+                <label for="pesan" class="form-label">Pesan</label>
+                <textarea id="pesan" class="form-control" rows="4"></textarea>
+                <div class="invalid-feedback">Pesan minimal 10 karakter.</div>
+              </div>
+              <button type="submit" class="btn btn-accent">Kirim pesan</button>
+              <div id="notifKontak" class="mt-3" role="status"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer py-4">
+    <div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
+      <p class="mb-0">&copy; 2026 Hasya Putri Anika</p>
+      <p class="mb-0 text-body-secondary">UTS Pemrograman Web, Sistem Informasi UN PGRI Kediri</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
